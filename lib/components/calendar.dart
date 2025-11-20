@@ -26,14 +26,14 @@ class _CalendarState extends State<Calendar> {
       selectedMonth != 1 ? selectedYear : selectedYear - 1,
       selectedMonth != 1 ? selectedMonth - 1 : 12,
     );
-    int pastDaysStart = pastDays - startDay;
+    int pastDaysStart = startDay == 1 ? 0 : pastDays - startDay;
 
     //расчет дней следующего месяца
     int nextDaysPos = DateUtilites.startDayOnWeek(
       selectedMonth == 12 ? selectedYear + 1 : selectedYear,
       selectedMonth == 12 ? 1 : selectedMonth + 1,
     );
-    int howMuchNext = 8 - nextDaysPos;
+    int howMuchNext = nextDaysPos != 1 ? 8 - nextDaysPos : 0;
 
     //вставка дней предыдущего месяца
     List<Widget> pastDaysWidgets = .generate(startDay - 1, (index) {
@@ -57,11 +57,16 @@ class _CalendarState extends State<Calendar> {
       return Dayoutmonth(day: index);
     });
 
+    String? monthName = DateUtilites.nameOfMonth[selectedMonth];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "Календарь",
-          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontWeight: .w600,
+          ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
@@ -69,16 +74,7 @@ class _CalendarState extends State<Calendar> {
         padding: const EdgeInsets.all(8.0),
         child: LayoutGrid(
           columnSizes: [1.fr, 1.fr, 1.fr, 1.fr, 1.fr, 1.fr, 1.fr],
-          rowSizes: [
-            0.2.fr,
-            0.3.fr,
-            0.3.fr,
-            0.3.fr,
-            0.3.fr,
-            0.3.fr,
-            1.fr,
-            1.fr,
-          ],
+          rowSizes: [25.px, 80.px, 80.px, 80.px, 80.px, 80.px, 80.px, 200.px],
           children: [
             TitleDay(title: 'Пн.'),
             TitleDay(title: "Вт."),
@@ -90,6 +86,139 @@ class _CalendarState extends State<Calendar> {
             ...pastDaysWidgets,
             ...daysWidgets,
             ...nextDaysWidgets,
+            GridPlacement(
+              columnStart: 0,
+              columnSpan: 7,
+              rowStart: 7,
+              rowSpan: 1,
+              child: Column(
+                crossAxisAlignment: .end,
+                children: [
+                  Row(
+                    mainAxisAlignment: .end,
+                    spacing: 5,
+                    children: [
+                      Expanded(
+                        child: Card(
+                          color: Theme.of(context).colorScheme.primary,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+
+                            child: Text(
+                              textAlign: .center,
+                              '$selectedYear',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontWeight: .w600,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            selectedYear--;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                          iconColor: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                        child: Icon(Icons.arrow_back),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            selectedYear++;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                          iconColor: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                        child: Icon(Icons.arrow_forward),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: .end,
+                    spacing: 5,
+                    children: [
+                      Expanded(
+                        child: Card(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              textAlign: .center,
+                              '$monthName',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: .w600,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            selectedMonth == 1
+                                ? {selectedMonth = 12, selectedYear--}
+                                : selectedMonth--;
+                          });
+                        },
+
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onPrimary,
+                          iconColor: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Icon(Icons.arrow_back),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            selectedMonth == 12
+                                ? {selectedMonth = 1, selectedYear++}
+                                : selectedMonth++;
+                          });
+                        },
+
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onPrimary,
+                          iconColor: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Icon(Icons.arrow_forward),
+                      ),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedMonth = DateUtilites.nowMonth;
+                        selectedYear = DateUtilites.nowYear;
+                      });
+                    },
+                    child: Icon(Icons.restore),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      iconColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
