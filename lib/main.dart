@@ -1,3 +1,4 @@
+import 'package:calendar/components/calendar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,9 +10,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Column(children: [Text('Calendar branch')])),
+      theme: ThemeData.from(
+        colorScheme: .fromSeed(
+          seedColor: const Color.fromARGB(255, 255, 255, 255),
+        ),
+      ),
+      home: Calendar(),
     );
   }
 }
