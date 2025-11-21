@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Column(children: [Text('Hello World')])),
+      home: Scaffold(body: Column(children: [Text('Weather App')])),
     );
   }
 }
