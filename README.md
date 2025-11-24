@@ -1,3 +1,3 @@
-# calendar
+# Empty Project (main branch)
+## Tikhonov IVT31b Flutter labs (repo №2)
 
-A new Flutter project.
