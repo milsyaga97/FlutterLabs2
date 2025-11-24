@@ -1,3 +1,2 @@
-# calendar
-
-A new Flutter project.
+# Calendar Project
+## Tikhonov IVT31b Flutter labs (repo №2)
