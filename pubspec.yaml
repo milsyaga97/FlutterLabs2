@@ -1,4 +1,4 @@
-name: calendar
+name: weather
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
@@ -10,7 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_layout_grid: ^2.0.8
-
+  http: ^1.6.0
+  flutter_dotenv: ^5.1.0
+  google_fonts: ^6.3.3
+  provider: ^6.1.5+1
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  flutter_svg: ^2.1.6
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -18,3 +26,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: googleSans
+      fonts:
+        - asset: fonts/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
+          weight: 700
