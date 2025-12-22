@@ -1,3 +1,3 @@
-# calendar
+# Weather Project
 
-A new Flutter project.
+Tikhonov IVT31b Flutter labs (repo №2)
