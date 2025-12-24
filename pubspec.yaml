@@ -10,6 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_layout_grid: ^2.0.8
+  flutter_localizations:
+    sdk: flutter
+  google_fonts: ^6.3.3
+  provider: ^6.1.5+1
+  weather: ^3.2.1
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +23,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: googleSans
+      fonts:
+        - asset: fonts/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
+          weight: 700
