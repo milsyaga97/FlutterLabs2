@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:weather/pages/weatherpage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather/providers/weatherprovider.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+void main() async {
+  await initializeDateFormatting('ru_RU');
   runApp(const MainApp());
 }
 
@@ -22,7 +24,7 @@ class MainApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [Locale('ru')],
+        supportedLocales: [Locale('ru', 'RU')],
         debugShowCheckedModeBanner: false,
         theme: ThemeData.from(
           textTheme: GoogleFonts.robotoTextTheme().apply(

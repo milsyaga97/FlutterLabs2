@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/models/weather.dart';
 
 class WeatherService {
   Future<Weather> fetchAPI(double lat, double lon) async {
-    String apiKey = '9b411a2e-bb21-4a40-888b-f6c19133e634';
+    String apiKey = '8a25706b-28e2-458b-8902-be0e90735ade';
 
     final url = Uri.parse(
       'https://api.weather.yandex.ru/v2/forecast?lat=$lat&lon=$lon&lang=ru_RU',
