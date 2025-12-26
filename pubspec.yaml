@@ -13,8 +13,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   google_fonts: ^6.3.3
+  http: ^1.6.0
+  intl: ^0.20.2
   provider: ^6.1.5+1
+  url_launcher: ^6.3.2
   weather: ^3.2.1
+  webview_flutter: ^4.13.0
 
 dev_dependencies:
   flutter_test:
